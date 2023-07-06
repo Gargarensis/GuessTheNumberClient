@@ -1,0 +1,6 @@
+<div class="centered-div">
+    <p id="home-title" class="headings-font">Guess the number!</p>
+    <p id="home-subtitle" class="headings-font">(while holding your breath...)</p>
+    <a *ngIf="!authService.isLoggedIn()" [routerLink]="[ '/', 'login' ]">Login</a>
+    <a *ngIf="authService.isLoggedIn()" [routerLink]="[ '/', 'game' ]">To the Game!</a>
+</div>
