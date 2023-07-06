@@ -1,0 +1,16 @@
+#top-bar {
+    background: rgb(253,207,45);
+    /* background: linear-gradient(0deg, rgba(253,207,45,1) 0%, rgba(218,221,41,1) 100%); */
+
+    color: white;
+    vertical-align: middle;
+    padding: 20px;
+}
+
+#top-bar-title {
+    font-size: 36px;
+    font-weight: 800;
+    -webkit-text-stroke: 1.5px black;
+    -webkit-font-smoothing: antialiased;
+    color: white;
+}

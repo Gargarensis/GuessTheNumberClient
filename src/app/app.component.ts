@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
 @Component({
@@ -7,12 +7,11 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'GuessTheNumberClient';
 
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get('https://guessthenumber.azurewebsites.net/marco').subscribe(res => console.log(res));
+    // this.http.get('https://guessthenumber.azurewebsites.net/marco').subscribe(res => console.log(res));
   }
 
 }
