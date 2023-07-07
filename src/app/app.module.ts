@@ -8,6 +8,8 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import { GameComponent } from './game/game.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

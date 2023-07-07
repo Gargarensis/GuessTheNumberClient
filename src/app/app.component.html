@@ -1,4 +1,8 @@
 <div id="top-bar">
   <span id="top-bar-title" class="headings-font">GuessTheNumber</span>
+  <span id="records-container" class="headings-font">
+    <div *ngIf="canShowAttempts()">Min. Attempts: {{ getRecordAttempts() }}</div>
+    <div *ngIf="canShowTime()">Best Time: {{ getFormattedTime() }}</div>
+  </span>
 </div>
 <router-outlet></router-outlet>

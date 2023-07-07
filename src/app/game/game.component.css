@@ -1,0 +1,96 @@
+#game-container {
+    width: 500px;
+    height: 500px;
+    font-size: 32px;
+    line-height: 70px;
+}
+
+#time-container {
+    width: 150px;
+    height: 150px;
+    margin-top: 350px;
+    font-size: 18px;
+}
+
+#attempts-container {
+    width: 150px;
+    height: 150px;
+    margin-top: 50px;
+    font-size: 18px;
+}  
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-70 {
+    margin-top: 70px;
+}
+
+.container-bubble {
+    margin: 10px;
+    flex-direction: column;
+}
+
+#full-game-container {
+    display: flex;
+    margin: auto;
+    margin-top: 50px;
+    width: fit-content;
+}
+
+.error-text {
+    color: rgb(242, 11, 11);
+}
+
+.victory-text {
+    color: green;
+}
+
+input {
+    border: 3px solid black;
+    border-radius: 5px;
+    height: 50px;
+    line-height: normal;
+    color: black;
+    display: block;
+    width: 300px;
+    box-sizing: border-box;
+    user-select: auto;
+    font-size: 16px;
+    padding: 0 6px;
+    padding-left: 12px;
+}
+
+input:focus {
+    border: 3px solid lightseagreen;
+}
+
+input:disabled {
+    border: 3px solid green;
+}
+
+.blue-button {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+@keyframes shake {
+    0% {
+      margin-left: 0rem;
+    }
+    25% {
+      margin-left: 0.5rem;
+    }
+    75% {
+      margin-left: -0.5rem;
+    }
+    100% {
+      margin-left: 0rem;
+    }
+}
+
+.wrong-input-animation {
+    animation: shake 0.2s ease-in-out 0s 2;
+    border-color: #ff0000;
+}

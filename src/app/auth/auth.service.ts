@@ -8,8 +8,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthService {
 
-  private AUTH_COOKIE_NAME: string = "AUTH_COOKIE";
-  private ZUMO_AUTH_HEADER: string = "X-ZUMO-AUTH";
+  private AUTH_COOKIE_NAME: string = 'AUTH_COOKIE';
+  private ZUMO_AUTH_HEADER: string = 'X-ZUMO-AUTH';
 
   constructor(
     private httpClient: HttpClient, 
@@ -21,8 +21,8 @@ export class AuthService {
   }
 
   public isLoggedIn(): boolean {
-    let cookie: string = this.cookieService.get(this.AUTH_COOKIE_NAME);
-
+    const cookie: string = this.cookieService.get(this.AUTH_COOKIE_NAME);
+    
     return cookie != null && cookie.length > 1;
   }
 
@@ -35,4 +35,13 @@ export class AuthService {
     this.cookieService.set(this.AUTH_COOKIE_NAME, token);
   }
 
+  public getToken(): string {
+    return this.cookieService.get(this.AUTH_COOKIE_NAME) || '';
+  }
+
+  public getAuthenticatedHeaders(): { headers: { [x: string]: string; } } {
+    return {
+      headers: { [this.ZUMO_AUTH_HEADER]: this.getToken() }
+    };
+  }
 }

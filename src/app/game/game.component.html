@@ -1,1 +1,33 @@
-<p>game works!</p>
+<div class="centered-div" id="full-game-container">
+    <div class="container-bubble" id="time-container">
+        <div class="mt-20 headings-font">
+            <p>Time</p><br>
+            <div>{{ (timer | async | date:'mm:ss') || '00:00' }}</div>
+        </div>
+    </div>
+    <div class="container-bubble" id="game-container">
+        <div *ngIf="gameStatus !== GameStatusType.STANDBY" class="mt-70 headings-font">
+            <p>Guess The Number!</p>
+            <input type="number" (keypress)="($event.charCode >= 48 && $event.charCode < 58)" (keyup.enter)="sendInput();" 
+                [(ngModel)]="currentInput" [disabled]="isGameFinished()" [class.wrong-input-animation]="playingErrorAnimation" (animationend)="setPlayingErrorAnimation(false);"/>
+
+            <a *ngIf="!isGameFinished()" class="blue-button" (click)="sendInput();">GUESS!</a>
+            <a *ngIf="isGameFinished()" class="blue-button" (click)="playAgain();">Play Again!</a>
+
+            <p *ngIf="this.gameStatus == GameStatusType.LAST_NUMBER_LOWER" class="error-text">TOO LOW!</p>
+            <p *ngIf="this.gameStatus == GameStatusType.LAST_NUMBER_BIGGER" class="error-text">TOO HIGH!</p>
+            <p *ngIf="isGameFinished()" class="victory-text">YOU WON!</p>
+        </div>
+        <div *ngIf="gameStatus === GameStatusType.STANDBY" class="mt-70 headings-font">
+            <p>Take a deep breath...</p>
+            <p>... and start when you are ready!</p>
+            <a class="blue-button" (click)="startGame();">START!</a>
+        </div>
+    </div>
+    <div class="container-bubble" id="attempts-container">
+        <div class="mt-20 headings-font">
+            <p>Attempts</p><br>
+            <div>{{ this.attempts }}</div>
+        </div>
+    </div>
+</div>

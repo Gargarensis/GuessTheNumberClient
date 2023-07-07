@@ -14,3 +14,11 @@
     -webkit-font-smoothing: antialiased;
     color: white;
 }
+
+#records-container {
+    font-size: 20px;
+    color: black;
+    float: right;
+    margin-right: 25px;
+    line-height: 25px;
+}
