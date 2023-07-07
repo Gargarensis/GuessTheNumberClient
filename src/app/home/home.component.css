@@ -1,19 +1,24 @@
 p {
-    color: white;
+    color: black;
 }
 
 a {
-    color: white;
-    font-size: 24px;
+    font-size: 28px;
     text-decoration: none;
 }
 
 #home-title {
     font-size: 48px;
     margin-bottom: 0px;
+    width: 450px;
 }
 
 #home-subtitle {
     font-size: 18px;
     margin-top: 12px;
+    margin-bottom: 80px;
+}
+
+.container-bubble {
+    margin-top: 50px;
 }

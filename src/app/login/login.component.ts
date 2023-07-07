@@ -15,10 +15,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router) { }
 
-  ngOnInit(): void {
-
-    console.log(this.getHref());
-    
+  ngOnInit(): void {    
     if (this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/home');
     }
@@ -26,7 +23,9 @@ export class LoginComponent implements OnInit {
     const currentURL = new URL(window.location.href);
     if (currentURL.searchParams.get(this.CALLBACK_PARAM_NAME)) {
       if (currentURL.hash) {
-        this.authService.loginWithToken(currentURL.hash);
+        let decodedHash = decodeURIComponent(currentURL.hash);
+        let jsonToken = JSON.parse(decodeURIComponent(decodedHash.replace('#token=', '')));
+        this.authService.loginWithToken(jsonToken.authenticationToken);
         this.router.navigateByUrl('/home');
       }
     }

@@ -1,3 +1,6 @@
-<div class="centered-div">
-    <a [href]="getHref()" (click)="$event.preventDefault(); rerouteToExternalLogin();">Login with GitHub</a>
+<div class="centered-div container-bubble">
+    <div id="login-container">
+        <img src="/assets/images/github-mark-white.png" id="login-github-logo" alt="github logo"><br>
+        <a [href]="getHref()" (click)="$event.preventDefault(); rerouteToExternalLogin();" class="blue-button">Login with GitHub</a>
+    </div>
 </div>
