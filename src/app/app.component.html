@@ -1,5 +1,9 @@
 <div id="top-bar">
-  <span id="top-bar-title" class="headings-font">GuessTheNumber</span>
+  <a id="top-bar-title" class="headings-font" [routerLink]="['/', 'home']">GuessTheNumber</a>
+
+  <a *ngIf="authService.isLoggedIn()" class="top-bar-buttons headings-font" [routerLink]="['/', 'home']" (click)="authService.logout()">Logout</a>
+  <a *ngIf="!authService.isLoggedIn()" class="top-bar-buttons headings-font" [routerLink]="['/', 'login']">Login</a>
+
   <span id="records-container" class="headings-font">
     <div *ngIf="canShowAttempts()">Min. Attempts: {{ getRecordAttempts() }}</div>
     <div *ngIf="canShowTime()">Best Time: {{ getFormattedTime() }}</div>

@@ -13,6 +13,20 @@
     -webkit-text-stroke: 1.5px black;
     -webkit-font-smoothing: antialiased;
     color: white;
+    text-decoration: none;
+}
+
+.top-bar-buttons {
+    font-size: 28px;
+    font-weight: 800;
+    color: blue;
+    text-decoration: none;
+    margin-left: 50px;
+    transition: all .1s ease-in;
+}
+
+.top-bar-buttons:hover { 
+    color:dodgerblue;
 }
 
 #records-container {

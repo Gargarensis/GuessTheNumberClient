@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RecordService } from './game/services/records.service';
 import { DatePipe } from '@angular/common';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ export class AppComponent {
 
   constructor(
     public recordService: RecordService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe,
+    public authService: AuthService) { }
 
   public getRecordAttempts(): number {
     return this.recordService.getRecordAttempts();

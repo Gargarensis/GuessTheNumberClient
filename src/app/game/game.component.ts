@@ -24,10 +24,24 @@ export class GameComponent {
 
   public currentInput = 0;
 
+  private highPitchedWrongSFX: HTMLAudioElement;
+  private wrongSFX: HTMLAudioElement;
+
   constructor(
     private gameClient: GameClientService,
     private recordService: RecordService
-    ) { }
+    ) {
+
+      this.wrongSFX = new Audio();
+      this.wrongSFX.src = "/assets/sounds/wrong.ogg";
+      this.wrongSFX.load();
+      this.wrongSFX.volume = 0.3;
+
+      this.highPitchedWrongSFX = new Audio();
+      this.highPitchedWrongSFX.src = "/assets/sounds/wrong-high.ogg";
+      this.highPitchedWrongSFX.load();
+      this.highPitchedWrongSFX.volume = 0.3;
+     }
 
   public startGame(): void {
     this.gameClient.startNewGame().subscribe(gameId => {
@@ -54,8 +68,19 @@ export class GameComponent {
         this.recordService.saveRecordInLocalStorage(this.attempts, this.currentTimeValue);
       } else {
         this.setPlayingErrorAnimation(true);
+        if (gameState == GameStatus.LAST_NUMBER_LOWER) {
+          this.playSound(this.wrongSFX);
+        } else {
+          this.playSound(this.highPitchedWrongSFX);
+        }
       }
     });
+  }
+
+  public playSound(audio: HTMLAudioElement) {
+    audio.pause();
+    audio.currentTime = 0;
+    audio.play();
   }
 
   public isGameFinished(): boolean {
