@@ -3,6 +3,7 @@ import { GameStatus } from './game-status';
 import { Observable, map, takeWhile, timer } from 'rxjs';
 import { GameClientService } from './services/gameclient.service';
 import { RecordService } from './services/records.service';
+import { AudioService } from './services/sound.service';
 
 @Component({
   selector: 'app-game',
@@ -24,27 +25,33 @@ export class GameComponent {
 
   public currentInput = 0;
 
-  private highPitchedWrongSFX: HTMLAudioElement;
-  private wrongSFX: HTMLAudioElement;
+  public difficulties = [
+    {
+      name: 'Easy',
+      maxValue: 100,
+      color: 'green'
+    },
+    {
+      name: 'Medium',
+      maxValue: 10000,
+      color: 'goldenrod'
+    },
+    {
+      name: 'Hard',
+      maxValue: 1000000,
+      color: 'red'
+    }
+  ];
+  public selectedDifficultyName = this.difficulties[1].name;
 
   constructor(
     private gameClient: GameClientService,
-    private recordService: RecordService
-    ) {
-
-      this.wrongSFX = new Audio();
-      this.wrongSFX.src = "/assets/sounds/wrong.ogg";
-      this.wrongSFX.load();
-      this.wrongSFX.volume = 0.3;
-
-      this.highPitchedWrongSFX = new Audio();
-      this.highPitchedWrongSFX.src = "/assets/sounds/wrong-high.ogg";
-      this.highPitchedWrongSFX.load();
-      this.highPitchedWrongSFX.volume = 0.3;
-     }
+    private recordService: RecordService,
+    private audioService: AudioService
+    ) {  }
 
   public startGame(): void {
-    this.gameClient.startNewGame().subscribe(gameId => {
+    this.gameClient.startNewGame(this.getSelectedDifficulty().maxValue).subscribe(gameId => {
       this.timerIsRunning = true;
       this.timer = timer(0, 1000).pipe(
         map(n => n * 1000),
@@ -66,21 +73,16 @@ export class GameComponent {
       if (gameState == GameStatus.GAME_WON) {
         this.timerIsRunning = false;
         this.recordService.saveRecordInLocalStorage(this.attempts, this.currentTimeValue);
+        this.audioService.playAudio(AudioService.VICTORY_SFX_NAME);
       } else {
         this.setPlayingErrorAnimation(true);
         if (gameState == GameStatus.LAST_NUMBER_LOWER) {
-          this.playSound(this.wrongSFX);
+          this.audioService.playAudio(AudioService.WRONG_SFX_NAME);
         } else {
-          this.playSound(this.highPitchedWrongSFX);
+          this.audioService.playAudio(AudioService.WRONG_HIGH_SFX_NAME);
         }
       }
     });
-  }
-
-  public playSound(audio: HTMLAudioElement) {
-    audio.pause();
-    audio.currentTime = 0;
-    audio.play();
   }
 
   public isGameFinished(): boolean {
@@ -102,5 +104,19 @@ export class GameComponent {
 
   public setPlayingErrorAnimation(value: boolean): void {
     this.playingErrorAnimation = value;
+  }
+
+  public getTelegramShareLink(): string {
+    return `https://t.me/share/url?url=${window.location.origin}&text=I held my breath for ${this.currentTimeValue / 1000} seconds and guessed the number in ${this.attempts} attempts!`;
+  }
+
+  public getSelectedDifficulty() {
+    const difficulty = this.difficulties.find(diff => diff.name === this.selectedDifficultyName);
+
+    if (!difficulty) {
+      return this.difficulties[1];
+    }
+
+    return difficulty;
   }
 }

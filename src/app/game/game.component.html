@@ -18,9 +18,18 @@
             <p *ngIf="this.gameStatus == GameStatusType.LAST_NUMBER_BIGGER" class="error-text">TOO HIGH!</p>
             <p *ngIf="isGameFinished()" class="victory-text">YOU WON!</p>
         </div>
+        <a *ngIf="isGameFinished()" class="blue-button share-button" [href]="getTelegramShareLink()">Share on Telegram!</a>
         <div *ngIf="gameStatus === GameStatusType.STANDBY" class="big-bubble-text-container headings-font">
             <p>Take a deep breath...</p>
             <p id="game-subtitle">... and start when you are ready!</p>
+            <div id="difficulty-input-container">
+                <select id="difficulty-input" [(ngModel)]="selectedDifficultyName" [style.borderColor]="getSelectedDifficulty().color">
+                    <option *ngFor="let difficulty of difficulties" [value]="difficulty.name">
+                        {{difficulty.name}} (1-{{difficulty.maxValue}})
+                    </option>
+                </select>
+            </div>
+            <br>
             <a class="blue-button" (click)="startGame();">START!</a>
         </div>
     </div>

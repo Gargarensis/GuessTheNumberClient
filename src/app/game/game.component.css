@@ -2,7 +2,7 @@
     width: 180px;
     height: 180px;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 15px;
     font-weight: 600;
 }
 
@@ -103,13 +103,30 @@ input:disabled {
     border-color: #ff0000;
 }
 
+.share-button {
+    line-height: 10px;
+    margin-top: 30px;
+}
+
+#difficulty-input-container {
+    margin-top: -10px;
+}
+
+#difficulty-input {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0 6px;
+    text-align: center;
+}
+
 @media only screen and (min-width: 992px) {
 
     #game-container {
         width: 500px;
         height: 500px;
         font-size: 32px;
-        line-height: 70px;
+        line-height: 50px;
         font-weight: 500;
     }
     
@@ -170,5 +187,16 @@ input:disabled {
 
     .blue-button {
         font-size: 22px;
+    }
+
+    .share-button {
+        line-height: 10px;
+        margin-top: 110px;
+    }
+
+    #difficulty-input {
+        font-size: 20px;
+        padding: 6px 20px;
+        border: 3px solid black;
     }
 } 

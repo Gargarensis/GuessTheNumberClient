@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
     let redirectUrl: URL = new URL(window.location.href.split(/[?#]/)[0]);
     redirectUrl.searchParams.append(this.CALLBACK_PARAM_NAME, 'true');
     
-    return 'https://guessthenumber.azurewebsites.net/.auth/login/github?post_login_redirect_uri=/user/postlogin?targetURL=' + encodeURIComponent(redirectUrl.toString());
+    return environment.apiUrl + '/.auth/login/github?post_login_redirect_uri=/user/postlogin?targetURL=' + encodeURIComponent(redirectUrl.toString());
   }
 
   public rerouteToExternalLogin() {
