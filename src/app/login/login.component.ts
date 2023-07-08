@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     let redirectUrl: URL = new URL(window.location.href.split(/[?#]/)[0]);
     redirectUrl.searchParams.append(this.CALLBACK_PARAM_NAME, 'true');
     
-    return environment.apiUrl + '/.auth/login/github?post_login_redirect_uri=/users/postlogin?targetURL=' + encodeURIComponent(redirectUrl.toString());
+    return environment.apiUrl + '/.auth/login/github?post_login_redirect_uri=/v1/users/postlogin?targetURL=' + encodeURIComponent(redirectUrl.toString());
   }
 
   public rerouteToExternalLogin() {
