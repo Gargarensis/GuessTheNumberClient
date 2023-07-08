@@ -1,41 +1,48 @@
 #game-container {
-    width: 500px;
-    height: 500px;
-    font-size: 32px;
-    line-height: 70px;
+    width: 180px;
+    height: 180px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
 }
 
 #time-container {
-    width: 150px;
-    height: 150px;
-    margin-top: 350px;
-    font-size: 18px;
+    width: 75px;
+    height: 75px;
+    margin-top: 120px;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 #attempts-container {
-    width: 150px;
-    height: 150px;
-    margin-top: 50px;
-    font-size: 18px;
+    width: 75px;
+    height: 75px;
+    font-size: 10px;
+    font-weight: 600;
 }  
 
-.mt-20 {
+#game-subtitle {
+    padding: 4px;
+    padding-top: 0px;
+}
+
+.lesser-bubble-text-container {
+    margin-top: 5px;
+}
+
+.big-bubble-text-container {
     margin-top: 20px;
 }
 
-.mt-70 {
-    margin-top: 70px;
-}
-
 .container-bubble {
-    margin: 10px;
+    margin: 5px;
     flex-direction: column;
 }
 
 #full-game-container {
     display: flex;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 35%;
     width: fit-content;
 }
 
@@ -48,31 +55,32 @@
 }
 
 input {
-    border: 3px solid black;
+    border: 1px solid black;
     border-radius: 5px;
-    height: 50px;
+    height: 20px;
     line-height: normal;
     color: black;
     display: block;
-    width: 300px;
+    width: 150px;
     box-sizing: border-box;
     user-select: auto;
-    font-size: 16px;
+    font-size: 12px;
     padding: 0 6px;
     padding-left: 12px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 input:focus {
-    border: 3px solid lightseagreen;
+    border: 1px solid lightseagreen;
 }
 
 input:disabled {
-    border: 3px solid green;
+    border: 1px solid green;
 }
 
 .blue-button {
-    font-size: 22px;
-    margin-top: 15px;
+    font-size: 14px;
 }
 
 @keyframes shake {
@@ -94,3 +102,73 @@ input:disabled {
     animation: shake 0.2s ease-in-out 0s 2;
     border-color: #ff0000;
 }
+
+@media only screen and (min-width: 992px) {
+
+    #game-container {
+        width: 500px;
+        height: 500px;
+        font-size: 32px;
+        line-height: 70px;
+        font-weight: 500;
+    }
+    
+    #time-container {
+        width: 150px;
+        height: 150px;
+        margin-top: 350px;
+        font-size: 18px;
+        font-weight: 500;
+    }
+    
+    #attempts-container {
+        width: 150px;
+        height: 150px;
+        margin-top: 50px;
+        font-size: 18px;
+        font-weight: 500;
+    }  
+    
+    .lesser-bubble-text-container {
+        margin-top: 20px;
+    }
+    
+    .big-bubble-text-container {
+        margin-top: 70px;
+    }
+    
+    .container-bubble {
+        margin: 10px;
+        flex-direction: column;
+    }
+    
+    #full-game-container {
+        display: flex;
+        margin: auto;
+        margin-top: 50px;
+        width: fit-content;
+    }
+    
+    input {
+        border: 3px solid black;
+        height: 50px;
+        line-height: normal;
+        width: 300px;
+        font-size: 20px;
+        padding: 0 6px;
+        padding-left: 12px;
+        margin-bottom: 10px;
+    }
+
+    input:focus {
+        border: 3px solid lightseagreen;
+    }
+    
+    input:disabled {
+        border: 3px solid green;
+    }
+
+    .blue-button {
+        font-size: 22px;
+    }
+} 

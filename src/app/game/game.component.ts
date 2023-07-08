@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { GameStatus } from './game-status';
 import { Observable, map, takeWhile, timer } from 'rxjs';
 import { GameClientService } from './services/gameclient.service';
