@@ -18,7 +18,7 @@
             <p *ngIf="this.gameStatus == GameStatusType.LAST_NUMBER_BIGGER" class="error-text">TOO HIGH!</p>
             <p *ngIf="isGameFinished()" class="victory-text">YOU WON!</p>
         </div>
-        <a *ngIf="isGameFinished()" class="blue-button share-button" [href]="getTelegramShareLink()" target="_blank">Share on Telegram!</a>
+        <a *ngIf="isGameFinished()" class="blue-button share-button" (click)="goToShxarePage()">Share on Telegram!</a>
         <div *ngIf="gameStatus === GameStatusType.STANDBY" class="big-bubble-text-container headings-font">
             <p>Take a deep breath...</p>
             <p id="game-subtitle">... and start when you are ready!</p>

@@ -110,6 +110,11 @@ export class GameComponent {
     return `https://t.me/share/url?url=${window.location.origin}&text=I held my breath for ${this.currentTimeValue / 1000} seconds and guessed the number in ${this.attempts} attempts!`;
   }
 
+  // intended typo to avoid adblocker
+  public goToShxarePage() {
+    window.open(this.getTelegramShareLink(), '_blank');
+  }
+
   public getSelectedDifficulty() {
     const difficulty = this.difficulties.find(diff => diff.name === this.selectedDifficultyName);
 
