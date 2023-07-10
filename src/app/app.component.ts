@@ -15,6 +15,9 @@ export class AppComponent {
     private datePipe: DatePipe,
     public authService: AuthService) { }
 
+  
+  /* Getters for records */
+  
   public getRecordAttempts(): number {
     return this.recordService.getRecordAttempts();
   }
@@ -26,6 +29,9 @@ export class AppComponent {
   public getFormattedTime(): string {
     return this.datePipe.transform(this.getRecordTime(), 'mm:ss') || '';
   }
+
+
+  /* Checks if we can show the records */
 
   public canShowAttempts(): boolean {
     return !isNaN(this.getRecordAttempts());

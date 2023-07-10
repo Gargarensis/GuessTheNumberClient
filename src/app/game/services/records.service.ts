@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
+/* Service to handle the user records, saved in the local storage */
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class RecordService {
 
   constructor() { }
 
+  /* Updates or add the records to the local storage if they are better than the already present ones */
   public saveRecordInLocalStorage(attempts: number, time: number) {
     const oldAttempts: number = Number(localStorage.getItem(this.LOCALSTORAGE_RECORD_ATTEMPTS_KEY) || NaN);
     const oldTime: number = Number(localStorage.getItem(this.LOCALSTORAGE_RECORD_TIME_KEY) || NaN);
@@ -24,10 +26,12 @@ export class RecordService {
     }
   }
 
+  /* Returns the record number of attempts */
   public getRecordAttempts(): number {
     return Number(localStorage.getItem(this.LOCALSTORAGE_RECORD_ATTEMPTS_KEY) || NaN);
   }
 
+  /* Returns the record time */
   public getRecordTime(): number {
     return Number(localStorage.getItem(this.LOCALSTORAGE_RECORD_TIME_KEY) || NaN);
   }

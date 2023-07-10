@@ -50,6 +50,10 @@ export class GameComponent {
     private audioService: AudioService
     ) {  }
 
+  /* 
+    Starts and initialize a new game asking the server for a new one 
+    It also start the record timer
+  */
   public startGame(): void {
     this.gameClient.startNewGame(this.getSelectedDifficulty().maxValue).subscribe(gameId => {
       this.timerIsRunning = true;
@@ -65,6 +69,14 @@ export class GameComponent {
     });
   }
 
+  /* 
+    Sends the current user input to the server 
+    Handle the response by:
+      - updating the game status
+      - increasing the attempts counter
+      - save the records and stopping the game if won
+      - playing the appropriate error sound and animation if the guessed number was wrong
+  */
   public sendInput(): void {
     this.gameClient.sendMoveToGame(this.gameId, this.currentInput).subscribe(gameState => {
       this.gameStatus = gameState;
@@ -85,10 +97,12 @@ export class GameComponent {
     });
   }
 
+  /* Returns true if the game is finished, false otherwise */
   public isGameFinished(): boolean {
     return this.gameStatus == GameStatus.GAME_WON;
   }
 
+  /* Resets the component's status and allow the user to play again */
   public playAgain(): void {
     this.attempts = 0;
     this.timer = undefined;
@@ -102,19 +116,23 @@ export class GameComponent {
     this.currentInput = 0;
   }
 
+  /* Plays or stops the input error animation */
   public setPlayingErrorAnimation(value: boolean): void {
     this.playingErrorAnimation = value;
   }
 
+  /* Builds and returns the Telegram share link */ 
   public getTelegramShareLink(): string {
     return `https://t.me/share/url?url=${window.location.origin}&text=I held my breath for ${this.currentTimeValue / 1000} seconds and guessed the number in ${this.attempts} attempts!`;
   }
 
+  /* Opens the Telegram share link in a new tab */
   // intended typo to avoid adblocker
   public goToShxarePage() {
     window.open(this.getTelegramShareLink(), '_blank');
   }
 
+  /* Returns the selected difficulty for this game */
   public getSelectedDifficulty() {
     const difficulty = this.difficulties.find(diff => diff.name === this.selectedDifficultyName);
 

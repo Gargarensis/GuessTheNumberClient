@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router) { }
 
+  /* 
+    On init, checks if the user is logged in and reroute him to the home page if logged in 
+    Also checks if the user has just logged in and process his auth token
+  */  
   ngOnInit(): void {    
     if (this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/home');
@@ -32,6 +36,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /* Returns the login URL */
   public getHref(): string {
     let redirectUrl: URL = new URL(window.location.href.split(/[?#]/)[0]);
     redirectUrl.searchParams.append(this.CALLBACK_PARAM_NAME, 'true');
@@ -39,6 +44,7 @@ export class LoginComponent implements OnInit {
     return environment.apiUrl + '/.auth/login/github?post_login_redirect_uri=/v1/users/postlogin?targetURL=' + encodeURIComponent(redirectUrl.toString());
   }
 
+  /* Redirects the user to the external login page */
   public rerouteToExternalLogin() {
     window.open(this.getHref(), '_self');
   }

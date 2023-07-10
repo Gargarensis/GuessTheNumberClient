@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
+/* Service to handle the game audio */
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,7 @@ export class AudioService {
     this.initAudio(AudioService.VICTORY_SFX_NAME, '/assets/sounds/victory.ogg');
   }
 
+  /* Initialize an audio file */ 
   private initAudio(audioName: string, audioPath: string): void {
     const audio = new Audio();
     audio.src = audioPath;
@@ -27,6 +29,7 @@ export class AudioService {
     this.audios.set(audioName, audio);
   }
 
+  /* Plays a previously-initialized audio */
   public playAudio(audioName: string): void {
     const audio = this.audios.get(audioName);
 
